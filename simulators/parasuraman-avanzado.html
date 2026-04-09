@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Simulador avanzado de la definición de calidad de Parasuraman con modo guiado y evaluación."
+    />
+    <title>PDCA Lab · Parasuraman Avanzado</title>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/simulator.css" />
+    <script type="module" src="../assets/js/pages/parasuraman-advanced.js" defer></script>
+  </head>
+  <body data-page="parasuraman">
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="../index.html">PDCA Lab</a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a data-nav-link="parasuraman" href="./parasuraman.html" data-i18n="nav.parasuraman"></a>
+          <a data-nav-link="pdca-team" href="./pdca-equipo.html" data-i18n="nav.pdcaTeam"></a>
+          <a data-nav-link="pvca" href="./pvca.html" data-i18n="nav.pvca"></a>
+        </nav>
+        <label class="language-picker">
+          <span data-i18n="common.language"></span>
+          <select data-language-select aria-label="Language selector"></select>
+        </label>
+      </header>
+
+      <main class="main-content" id="advanced-content" hidden>
+        <section class="sim-intro card">
+          <h1 data-i18n="parasuramanAdvanced.title"></h1>
+          <p data-i18n="parasuramanAdvanced.subtitle"></p>
+          <div class="tag-row">
+            <span class="badge badge-live" data-i18n="parasuraman.tag.simple"></span>
+            <span class="badge badge-live" data-i18n="parasuraman.tag.guided"></span>
+            <span class="badge badge-live" data-i18n="parasuraman.tag.evaluation"></span>
+          </div>
+        </section>
+
+        <section>
+          <div class="mode-tabs" role="tablist" aria-label="Mode selector">
+            <button class="tab-btn is-active" type="button" data-mode-target="simple" data-i18n="parasuraman.mode.simple"></button>
+            <button class="tab-btn" type="button" data-mode-target="guided" data-i18n="parasuraman.mode.guided"></button>
+          </div>
+
+          <section class="mode-panel" data-mode-panel="simple">
+            <div class="sim-grid">
+              <section class="control-panel card" aria-label="Simulation controls">
+                <div class="control-group">
+                  <label for="expected-range" data-i18n="parasuraman.controls.expected"></label>
+                  <div class="range-row">
+                    <input id="expected-range" type="range" min="0" max="100" step="1" value="72" />
+                    <output id="expected-output">72</output>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label for="adaptation-rate" data-i18n="parasuraman.controls.adaptationRate"></label>
+                  <div class="range-row">
+                    <input id="adaptation-rate" type="range" min="0" max="100" step="5" value="35" />
+                    <output id="adaptation-output">35%</output>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label>
+                    <input id="adaptation-toggle" type="checkbox" checked />
+                    <span data-i18n="parasuraman.controls.adaptationToggle"></span>
+                  </label>
+                </div>
+
+                <div>
+                  <h3 data-i18n="parasuraman.controls.parameters"></h3>
+                  <div id="parameter-list" class="parameter-list"></div>
+                </div>
+
+                <div class="actions-row">
+                  <button id="run-cycle" class="btn btn-primary" type="button" data-i18n="parasuraman.actions.run"></button>
+                  <button id="auto-cycle" class="btn btn-secondary" type="button" data-i18n="parasuraman.actions.auto"></button>
+                  <button id="reset-cycle" class="btn btn-secondary" type="button" data-i18n="parasuraman.actions.reset"></button>
+                </div>
+              </section>
+
+              <section class="viz-panel card" aria-live="polite">
+                <div class="quality-scale" id="quality-scale">
+                  <div class="scale-track"></div>
+                  <div class="scale-distance" id="distance-bar"></div>
+                  <div class="scale-marker expected" id="expected-marker">
+                    <span></span>
+                    <small data-i18n="parasuraman.visual.expectedMark"></small>
+                  </div>
+                  <div class="scale-marker perceived" id="perceived-marker">
+                    <span></span>
+                    <small data-i18n="parasuraman.visual.perceivedMark"></small>
+                  </div>
+                  <div class="scale-labels">
+                    <span>0</span>
+                    <span>25</span>
+                    <span>50</span>
+                    <span>75</span>
+                    <span>100</span>
+                  </div>
+                </div>
+
+                <div class="metrics-grid">
+                  <article class="metric">
+                    <strong id="metric-expected">72</strong>
+                    <small data-i18n="parasuraman.metrics.expected"></small>
+                  </article>
+                  <article class="metric">
+                    <strong id="metric-perceived">58</strong>
+                    <small data-i18n="parasuraman.metrics.perceived"></small>
+                  </article>
+                  <article class="metric">
+                    <strong id="metric-distance">14</strong>
+                    <small data-i18n="parasuraman.metrics.distance"></small>
+                  </article>
+                  <article class="metric">
+                    <strong id="metric-quality">86</strong>
+                    <small data-i18n="parasuraman.metrics.quality"></small>
+                  </article>
+                </div>
+
+                <p class="insight" id="quality-insight"></p>
+
+                <div class="history-wrap">
+                  <table class="history-table">
+                    <thead>
+                      <tr>
+                        <th data-i18n="parasuraman.history.cycle"></th>
+                        <th data-i18n="parasuraman.history.expected"></th>
+                        <th data-i18n="parasuraman.history.perceived"></th>
+                        <th data-i18n="parasuraman.history.distance"></th>
+                        <th data-i18n="parasuraman.history.quality"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="history-body"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="mode-panel" data-mode-panel="guided" hidden>
+            <section class="guided-panel card">
+              <h2 data-i18n="parasuraman.guided.title"></h2>
+              <p data-i18n="parasuraman.guided.description"></p>
+
+              <div class="guided-case">
+                <h3 id="guided-case-title"></h3>
+                <p id="guided-case-description"></p>
+                <p><strong data-i18n="parasuraman.guided.progress"></strong> <span id="guided-progress"></span></p>
+              </div>
+
+              <div>
+                <h4 id="guided-prompt"></h4>
+                <form id="guided-options" class="guided-options"></form>
+              </div>
+
+              <div class="actions-row">
+                <button id="guided-start" type="button" class="btn btn-secondary" data-i18n="parasuraman.guided.start"></button>
+                <button id="guided-apply" type="button" class="btn btn-primary" data-i18n="parasuraman.guided.apply"></button>
+              </div>
+
+              <div id="guided-feedback" class="guided-feedback"></div>
+              <div id="guided-summary" class="guided-summary"></div>
+            </section>
+          </section>
+        </section>
+      </main>
+
+      <section class="main-content" id="advanced-lock">
+        <section class="sim-intro card">
+          <h1 data-i18n="parasuramanAdvanced.lock.title"></h1>
+          <p data-i18n="parasuramanAdvanced.lock.subtitle"></p>
+          <form id="advanced-password-form" class="actions-row" novalidate>
+            <label class="sr-only" for="advanced-password" data-i18n="parasuramanAdvanced.lock.input"></label>
+            <input id="advanced-password" type="password" autocomplete="off" />
+            <button class="btn btn-primary" type="submit" data-i18n="parasuramanAdvanced.lock.action"></button>
+          </form>
+          <p id="advanced-password-message"></p>
+        </section>
+      </section>
+
+      <footer class="app-footer">
+        <span data-i18n="footer.author"></span>
+        <span> · </span>
+        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <span> · </span>
+        <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
+        <span> · </span>
+        <span data-current-year></span>
+      </footer>
+    </div>
+  </body>
+</html>

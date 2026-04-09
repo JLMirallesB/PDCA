@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Selector de simuladores interactivos sobre mejora de la calidad educativa: Parasuraman, PDCA y PVCA."
+    />
+    <title>PDCA Lab</title>
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/home.css" />
+    <script type="module" src="./assets/js/pages/home.js" defer></script>
+  </head>
+  <body data-page="home">
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="./index.html">PDCA Lab</a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a data-nav-link="parasuraman" href="./simulators/parasuraman.html" data-i18n="nav.parasuraman"></a>
+          <a data-nav-link="pdca-team" href="./simulators/pdca-equipo.html" data-i18n="nav.pdcaTeam"></a>
+          <a data-nav-link="pvca" href="./simulators/pvca.html" data-i18n="nav.pvca"></a>
+        </nav>
+        <label class="language-picker">
+          <span data-i18n="common.language"></span>
+          <select data-language-select aria-label="Language selector"></select>
+        </label>
+      </header>
+
+      <main class="main-content">
+        <section class="hero card">
+          <h1 data-i18n="home.hero.title"></h1>
+          <p data-i18n="home.hero.subtitle"></p>
+        </section>
+
+        <section>
+          <h2 class="section-title" data-i18n="home.simulators.title"></h2>
+          <div class="sim-grid">
+            <article class="sim-card">
+              <span class="badge badge-live" data-i18n="home.cards.parasuraman.status"></span>
+              <h3 data-i18n="home.cards.parasuraman.title"></h3>
+              <p data-i18n="home.cards.parasuraman.description"></p>
+              <div class="card-actions">
+                <small data-i18n="home.cards.parasuraman.mode"></small>
+                <a href="./simulators/parasuraman.html" data-i18n="home.cards.parasuraman.cta"></a>
+              </div>
+            </article>
+
+            <article class="sim-card">
+              <span class="badge badge-live" data-i18n="home.cards.pdca.status"></span>
+              <h3 data-i18n="home.cards.pdca.title"></h3>
+              <p data-i18n="home.cards.pdca.description"></p>
+              <div class="card-actions">
+                <small data-i18n="home.cards.pdca.mode"></small>
+                <a href="./simulators/pdca-equipo.html" data-i18n="home.cards.pdca.cta"></a>
+              </div>
+            </article>
+
+            <article class="sim-card">
+              <span class="badge badge-live" data-i18n="home.cards.pvca.status"></span>
+              <h3 data-i18n="home.cards.pvca.title"></h3>
+              <p data-i18n="home.cards.pvca.description"></p>
+              <div class="card-actions">
+                <small data-i18n="home.cards.pvca.mode"></small>
+                <a href="./simulators/pvca.html" data-i18n="home.cards.pvca.cta"></a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="app-footer">
+        <span data-i18n="footer.author"></span>
+        <span> · </span>
+        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <span> · </span>
+        <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
+        <span> · </span>
+        <span data-current-year></span>
+      </footer>
+    </div>
+  </body>
+</html>

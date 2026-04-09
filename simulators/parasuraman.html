@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Simulador paso a paso de la definición de calidad de Parasuraman para formación educativa."
+    />
+    <title>PDCA Lab · Parasuraman</title>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/parasuraman-simple.css" />
+    <script type="module" src="../assets/js/pages/parasuraman.js" defer></script>
+  </head>
+  <body data-page="parasuraman">
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="../index.html">PDCA Lab</a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a data-nav-link="parasuraman" href="./parasuraman.html" data-i18n="nav.parasuraman"></a>
+          <a data-nav-link="pdca-team" href="./pdca-equipo.html" data-i18n="nav.pdcaTeam"></a>
+          <a data-nav-link="pvca" href="./pvca.html" data-i18n="nav.pvca"></a>
+        </nav>
+        <label class="language-picker">
+          <span data-i18n="common.language"></span>
+          <select data-language-select aria-label="Language selector"></select>
+        </label>
+      </header>
+
+      <main class="main-content">
+        <section class="step-intro card">
+          <h1 data-i18n="parasuramanSimple.title"></h1>
+          <p data-i18n-html="parasuramanSimple.subtitle"></p>
+          <div class="quick-links">
+            <span class="badge badge-live" data-i18n="parasuramanSimple.badge"></span>
+            <a class="btn btn-secondary" href="./parasuraman-avanzado.html" data-i18n="parasuramanSimple.advancedLink"></a>
+          </div>
+        </section>
+
+        <section class="step-layout">
+          <section class="step-panel card">
+            <div class="step-counter" id="step-counter"></div>
+            <h2 data-i18n="parasuramanSimple.readerTitle"></h2>
+            <article class="step-text" id="step-text"></article>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-secondary" id="step-prev" data-i18n="parasuramanSimple.actions.prev"></button>
+              <button type="button" class="btn btn-primary" id="step-next" data-i18n="parasuramanSimple.actions.next"></button>
+            </div>
+          </section>
+
+          <section class="animation-panel card">
+            <h2 data-i18n="parasuramanSimple.animationTitle"></h2>
+            <p class="step-hint" id="step-hint"></p>
+            <div class="animation-area">
+              <div class="scale-shell">
+                <div class="scale-line">
+                  <div class="scale-gap" id="distance-gap"></div>
+
+                  <div class="point point-perceived" id="point-perceived">
+                    <span class="point-core" aria-hidden="true"></span>
+                    <span class="point-label" data-i18n="parasuramanSimple.labels.perceived"></span>
+                  </div>
+
+                  <div class="point point-expected" id="point-expected">
+                    <span class="point-core" aria-hidden="true"></span>
+                    <span class="point-label" data-i18n="parasuramanSimple.labels.expected"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="subjective-note" id="subjective-note"></div>
+
+            <div class="metrics-inline">
+              <article class="metric-box">
+                <strong id="metric-perceived">0</strong>
+                <small data-i18n="parasuramanSimple.metrics.perceived"></small>
+              </article>
+              <article class="metric-box">
+                <strong id="metric-quality">0</strong>
+                <small data-i18n="parasuramanSimple.metrics.qualityPoint"></small>
+              </article>
+              <article class="metric-box">
+                <strong id="metric-expected">0</strong>
+                <small data-i18n="parasuramanSimple.metrics.expected"></small>
+              </article>
+              <article class="metric-box">
+                <strong id="metric-distance">0</strong>
+                <small data-i18n="parasuramanSimple.metrics.distance"></small>
+              </article>
+            </div>
+
+            <div id="parameter-block">
+              <h3 data-i18n="parasuramanSimple.parameterTitle"></h3>
+              <div class="param-rows" id="parameter-rows"></div>
+              <p class="parameter-note" data-i18n="parasuramanSimple.parameterApprox"></p>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span data-i18n="footer.author"></span>
+        <span> · </span>
+        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <span> · </span>
+        <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
+        <span> · </span>
+        <span data-current-year></span>
+      </footer>
+    </div>
+  </body>
+</html>

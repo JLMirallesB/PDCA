@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Módulo interactivo PDCA: definición guiada, visual principal del ciclo y malfuncionamientos."
+    />
+    <title>PDCA Lab · PDCA</title>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/pdca.css" />
+    <script type="module" src="../assets/js/pages/pdca.js" defer></script>
+  </head>
+  <body data-page="pdca-team">
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="../index.html">PDCA Lab</a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a data-nav-link="parasuraman" href="./parasuraman.html" data-i18n="nav.parasuraman"></a>
+          <a data-nav-link="pdca-team" href="./pdca-equipo.html" data-i18n="nav.pdcaTeam"></a>
+          <a data-nav-link="pvca" href="./pvca.html" data-i18n="nav.pvca"></a>
+        </nav>
+        <label class="language-picker">
+          <span data-i18n="common.language"></span>
+          <select data-language-select aria-label="Language selector"></select>
+        </label>
+      </header>
+
+      <main class="main-content">
+        <section class="pdca-intro card">
+          <h1 data-i18n="pdca.title"></h1>
+          <p class="pdca-aliases-title" data-i18n="pdca.aliases.title"></p>
+          <ul class="pdca-aliases-list">
+            <li data-i18n="pdca.aliases.a1"></li>
+            <li data-i18n="pdca.aliases.a2"></li>
+            <li data-i18n="pdca.aliases.a3"></li>
+            <li data-i18n="pdca.aliases.a4"></li>
+            <li data-i18n="pdca.aliases.a5"></li>
+          </ul>
+          <div class="tag-row">
+            <span class="badge badge-live" data-i18n="pdca.badges.definition"></span>
+            <span class="badge badge-live" data-i18n="pdca.badges.visual"></span>
+            <span class="badge badge-live" data-i18n="pdca.badges.malfunctions"></span>
+          </div>
+        </section>
+
+        <section class="pdca-module card">
+          <h2 data-i18n="pdca.definition.title"></h2>
+          <p class="pdca-module-lead" data-i18n="pdca.definition.lead"></p>
+          <div class="cycle-layout">
+            <div class="cycle-canvas cycle-canvas-shared" id="definition-cycle">
+              <div class="cycle-ring"></div>
+              <div class="cycle-link" data-cycle-link="plan-do"></div>
+              <div class="cycle-link" data-cycle-link="do-check"></div>
+              <div class="cycle-link" data-cycle-link="check-act"></div>
+              <div class="cycle-link" data-cycle-link="act-plan"></div>
+              <div class="cycle-node" data-cycle-node="plan">
+                <strong data-i18n="pdca.phase.plan.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="do">
+                <strong data-i18n="pdca.phase.do.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="check">
+                <strong data-i18n="pdca.phase.check.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="act">
+                <strong data-i18n="pdca.phase.act.label"></strong>
+              </div>
+            </div>
+            <section class="definition-panel">
+              <div class="pdca-counter" id="definition-counter"></div>
+              <article class="pdca-definition-text" id="definition-text"></article>
+              <div class="pdca-actions">
+                <button
+                  id="definition-prev"
+                  class="btn btn-secondary"
+                  type="button"
+                  data-i18n="pdca.actions.prev"
+                ></button>
+                <button
+                  id="definition-next"
+                  class="btn btn-primary"
+                  type="button"
+                  data-i18n="pdca.actions.next"
+                ></button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="pdca-module card">
+          <h2 data-i18n="pdca.visual.title"></h2>
+          <p class="pdca-module-lead" data-i18n="pdca.visual.lead"></p>
+          <div class="cycle-layout">
+            <div class="cycle-canvas cycle-canvas-shared" id="visual-cycle">
+              <div class="cycle-ring"></div>
+              <div class="cycle-link" data-cycle-link="plan-do"></div>
+              <div class="cycle-link" data-cycle-link="do-check"></div>
+              <div class="cycle-link" data-cycle-link="check-act"></div>
+              <div class="cycle-link" data-cycle-link="act-plan"></div>
+              <div class="cycle-node" data-cycle-node="plan">
+                <strong data-i18n="pdca.phase.plan.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="do">
+                <strong data-i18n="pdca.phase.do.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="check">
+                <strong data-i18n="pdca.phase.check.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="act">
+                <strong data-i18n="pdca.phase.act.label"></strong>
+              </div>
+              <div class="cycle-token" id="visual-token" aria-hidden="true">📦</div>
+            </div>
+
+            <section class="phase-detail">
+              <h3 id="phase-title"></h3>
+              <p><strong data-i18n="pdca.visual.input"></strong> <span id="phase-input"></span></p>
+              <p><strong data-i18n="pdca.visual.process"></strong> <span id="phase-process"></span></p>
+              <p><strong data-i18n="pdca.visual.output"></strong> <span id="phase-output"></span></p>
+              <div class="handoff-block">
+                <p class="handoff-title"><strong data-i18n="pdca.visual.handoff"></strong></p>
+                <p class="handoff-caption" id="phase-handoff-caption"></p>
+                <div class="handoff-row">
+                  <article class="handoff-chip">
+                    <small data-i18n="pdca.visual.handoffOutput"></small>
+                    <strong id="phase-handoff-output"></strong>
+                  </article>
+                  <span class="handoff-arrow" aria-hidden="true">→</span>
+                  <article class="handoff-chip">
+                    <small data-i18n="pdca.visual.handoffInput"></small>
+                    <strong id="phase-handoff-input"></strong>
+                  </article>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="pdca-actions">
+            <button id="phase-prev" class="btn btn-secondary" type="button" data-i18n="pdca.actions.prevPhase"></button>
+            <button id="phase-next" class="btn btn-primary" type="button" data-i18n="pdca.actions.nextPhase"></button>
+          </div>
+        </section>
+
+        <section class="pdca-module card">
+          <h2 data-i18n="pdca.malfunctions.title"></h2>
+          <p class="pdca-module-lead" data-i18n="pdca.malfunctions.lead"></p>
+
+          <div class="cycle-layout">
+            <div class="cycle-canvas cycle-canvas-shared is-malfunction" id="malfunction-cycle" data-malfunction-type="type1">
+              <div class="cycle-ring"></div>
+              <div class="cycle-link" data-cycle-link="plan-do"></div>
+              <div class="cycle-link" data-cycle-link="do-check"></div>
+              <div class="cycle-link" data-cycle-link="check-act"></div>
+              <div class="cycle-link" data-cycle-link="act-plan"></div>
+              <div class="cycle-node" data-cycle-node="plan">
+                <strong data-i18n="pdca.phase.plan.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="do">
+                <strong data-i18n="pdca.phase.do.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="check">
+                <strong data-i18n="pdca.phase.check.label"></strong>
+              </div>
+              <div class="cycle-node" data-cycle-node="act">
+                <strong data-i18n="pdca.phase.act.label"></strong>
+              </div>
+              <div class="cycle-token" id="malfunction-token" aria-hidden="true">📦</div>
+            </div>
+
+            <section class="malfunction-detail">
+              <h3 id="malfunction-title"></h3>
+              <p id="malfunction-description"></p>
+              <p><strong data-i18n="pdca.malfunctions.effectLabel"></strong> <span id="malfunction-effect"></span></p>
+              <div class="potential-wrap">
+                <div class="potential-bar">
+                  <div class="potential-fill" id="potential-fill"></div>
+                </div>
+                <small id="potential-label"></small>
+              </div>
+            </section>
+          </div>
+
+          <div class="pdca-actions">
+            <button id="malfunction-prev" class="btn btn-secondary" type="button" data-i18n="pdca.actions.prevType"></button>
+            <button id="malfunction-next" class="btn btn-primary" type="button" data-i18n="pdca.actions.nextType"></button>
+          </div>
+        </section>
+
+        <section class="pdca-module card">
+          <h2 data-i18n="pdca.games.title"></h2>
+          <p class="pdca-module-lead" data-i18n="pdca.games.lead"></p>
+
+          <div class="games-grid">
+            <article class="game-card">
+              <h3 data-i18n="pdca.games.order.title"></h3>
+              <p class="game-lead" data-i18n="pdca.games.order.instructions"></p>
+
+              <ol class="order-list" id="order-game-list"></ol>
+
+              <div class="pdca-actions game-actions">
+                <button id="order-game-shuffle" class="btn btn-secondary" type="button" data-i18n="pdca.games.actions.shuffle"></button>
+                <button id="order-game-check" class="btn btn-primary" type="button" data-i18n="pdca.games.actions.check"></button>
+              </div>
+
+              <p class="game-feedback" id="order-game-feedback"></p>
+            </article>
+
+            <article class="game-card">
+              <h3 data-i18n="pdca.games.match.title"></h3>
+              <p class="game-lead" data-i18n="pdca.games.match.instructions"></p>
+
+              <div class="match-list" id="match-game-list"></div>
+
+              <div class="pdca-actions game-actions">
+                <button id="match-game-reset" class="btn btn-secondary" type="button" data-i18n="pdca.games.actions.reset"></button>
+                <button id="match-game-check" class="btn btn-primary" type="button" data-i18n="pdca.games.actions.check"></button>
+              </div>
+
+              <p class="game-feedback" id="match-game-feedback"></p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span data-i18n="footer.author"></span>
+        <span> · </span>
+        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <span> · </span>
+        <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
+        <span> · </span>
+        <span data-current-year></span>
+      </footer>
+    </div>
+  </body>
+</html>

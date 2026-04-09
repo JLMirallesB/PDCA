@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap");
+
+:root {
+  --bg: #f8f7f2;
+  --surface: #ffffff;
+  --surface-soft: #f1efe4;
+  --surface-strong: #e5f1f1;
+  --text: #1b272d;
+  --muted: #5f6970;
+  --accent: #0b8078;
+  --accent-strong: #095650;
+  --ok: #2f7f45;
+  --warning: #aa6400;
+  --danger: #a9352a;
+  --ring: rgba(11, 128, 120, 0.35);
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 12px 34px rgba(21, 43, 62, 0.12);
+  --max-width: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+  background:
+    radial-gradient(50rem 32rem at 0% 0%, rgba(167, 221, 211, 0.25) 0%, transparent 55%),
+    radial-gradient(45rem 30rem at 100% 100%, rgba(241, 214, 176, 0.22) 0%, transparent 60%),
+    var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  width: min(var(--max-width), calc(100% - 2rem));
+  margin: 0 auto;
+  padding-bottom: 2.5rem;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border: 1px solid rgba(12, 29, 44, 0.08);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand {
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.72rem;
+  color: var(--muted);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.nav-links a:hover {
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+.nav-links a.is-active {
+  background: var(--surface-strong);
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.language-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.language-picker select,
+input[type="range"],
+button,
+select {
+  font: inherit;
+}
+
+.language-picker select {
+  border: 1px solid rgba(12, 29, 44, 0.2);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+}
+
+.main-content {
+  padding-top: 1.4rem;
+}
+
+.app-footer {
+  margin-top: 2.8rem;
+  border-top: 1px solid rgba(12, 29, 44, 0.12);
+  padding-top: 0.9rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid rgba(12, 29, 44, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+.btn {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong);
+}
+
+.btn-secondary {
+  background: var(--surface-soft);
+  border-color: rgba(12, 29, 44, 0.14);
+  color: var(--text);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.58rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge-live {
+  background: rgba(47, 127, 69, 0.15);
+  color: #1d662f;
+}
+
+.badge-soon {
+  background: rgba(170, 100, 0, 0.16);
+  color: #875200;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .app-header {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .nav-links {
+    overflow: auto;
+    white-space: nowrap;
+    padding-bottom: 0.2rem;
+  }
+
+  .language-picker {
+    justify-content: space-between;
+  }
+}

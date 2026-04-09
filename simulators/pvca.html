@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Simulación interactiva del modelo PVCA con modo definición y modo malfuncionamiento."
+    />
+    <title>PDCA Lab · PVCA</title>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/pvca.css" />
+    <script type="module" src="../assets/js/pages/pvca.js" defer></script>
+  </head>
+  <body data-page="pvca">
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="../index.html">PDCA Lab</a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a data-nav-link="parasuraman" href="./parasuraman.html" data-i18n="nav.parasuraman"></a>
+          <a data-nav-link="pdca-team" href="./pdca-equipo.html" data-i18n="nav.pdcaTeam"></a>
+          <a data-nav-link="pvca" href="./pvca.html" data-i18n="nav.pvca"></a>
+        </nav>
+        <label class="language-picker">
+          <span data-i18n="common.language"></span>
+          <select data-language-select aria-label="Language selector"></select>
+        </label>
+      </header>
+
+      <main class="main-content">
+        <section class="pvca-intro card">
+          <h1 data-i18n="pvca.title"></h1>
+          <p data-i18n="pvca.subtitle"></p>
+          <div class="tag-row">
+            <span class="badge badge-live" data-i18n="pvca.badges.definition"></span>
+            <span class="badge badge-live" data-i18n="pvca.badges.malfunction"></span>
+          </div>
+        </section>
+
+        <section class="pvca-module card">
+          <div class="pvca-mode-tabs" role="tablist" aria-label="PVCA mode">
+            <button
+              id="pvca-mode-definition"
+              class="tab-btn is-active"
+              type="button"
+              data-mode-target="definition"
+              data-i18n="pvca.modes.definition"
+            ></button>
+            <button
+              id="pvca-mode-malfunction"
+              class="tab-btn"
+              type="button"
+              data-mode-target="malfunction"
+              data-i18n="pvca.modes.malfunction"
+            ></button>
+          </div>
+
+          <p class="pvca-lead" id="pvca-lead"></p>
+
+          <div class="pvca-canvas-wrap">
+            <div class="pvca-canvas" id="pvca-canvas">
+              <button class="pvca-box" data-pvca-phase="pressure" type="button"></button>
+              <button class="pvca-box" data-pvca-phase="vision" type="button"></button>
+              <button class="pvca-box" data-pvca-phase="capacity" type="button"></button>
+              <button class="pvca-box" data-pvca-phase="actions" type="button"></button>
+            </div>
+          </div>
+
+          <section class="pvca-problem" id="pvca-problem" aria-live="polite"></section>
+          <div class="pvca-reset-wrap">
+            <button id="pvca-reset" class="btn btn-secondary" type="button" data-i18n="pvca.actions.reset" hidden></button>
+          </div>
+        </section>
+
+        <section class="pvca-modal" id="pvca-modal" hidden>
+          <div class="pvca-modal-backdrop" data-modal-close="backdrop"></div>
+          <article class="pvca-modal-card" role="dialog" aria-modal="true" aria-labelledby="pvca-modal-title">
+            <h2 id="pvca-modal-title"></h2>
+            <p id="pvca-modal-description"></p>
+            <div class="pvca-modal-actions">
+              <button id="pvca-modal-close" class="btn btn-primary" type="button" data-i18n="pvca.modal.close"></button>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span data-i18n="footer.author"></span>
+        <span> · </span>
+        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <span> · </span>
+        <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
+        <span> · </span>
+        <span data-current-year></span>
+      </footer>
+    </div>
+  </body>
+</html>
