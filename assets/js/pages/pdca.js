@@ -21,11 +21,13 @@ const definitionVisualStates = [
   { visible: ["plan", "do", "check", "act"], active: "act" }
 ];
 
+// Punto medio de cada tramo, desplazado hacia fuera del anillo: sobre el trazo
+// exacto el paquete tapaba la punta de la flecha que debe acompañar.
 const cycleTokenPositions = {
-  plan: { left: 64, top: 35 },
-  do: { left: 64, top: 65 },
-  check: { left: 36, top: 65 },
-  act: { left: 36, top: 35 }
+  plan: { left: 67, top: 31 },
+  do: { left: 67, top: 69 },
+  check: { left: 33, top: 69 },
+  act: { left: 33, top: 31 }
 };
 
 const malfunctionTypes = [

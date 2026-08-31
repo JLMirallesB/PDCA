@@ -7,7 +7,14 @@
       name="description"
       content="Módulo interactivo PDCA: definición guiada, visual principal del ciclo y malfuncionamientos."
     />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <title>PDCA Lab · PDCA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
+    />
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/pdca.css" />
     <script type="module" src="../assets/js/pages/pdca.js" defer></script>
@@ -49,12 +56,23 @@
           <h2 data-i18n="pdca.definition.title"></h2>
           <p class="pdca-module-lead" data-i18n="pdca.definition.lead"></p>
           <div class="cycle-layout">
-            <div class="cycle-canvas cycle-canvas-shared" id="definition-cycle">
-              <div class="cycle-ring"></div>
-              <div class="cycle-link" data-cycle-link="plan-do"></div>
-              <div class="cycle-link" data-cycle-link="do-check"></div>
-              <div class="cycle-link" data-cycle-link="check-act"></div>
-              <div class="cycle-link" data-cycle-link="act-plan"></div>
+            <div class="cycle-canvas" id="definition-cycle">
+              <svg class="cycle-links" viewBox="0 0 360 272" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <ellipse class="cycle-ring" cx="180" cy="136" rx="104.4" ry="81.6"
+                          fill="none" stroke="rgba(19, 44, 64, 0.15)" stroke-width="1.5" stroke-dasharray="3 8" />
+                <path class="cycle-link" data-cycle-link="plan-do" d="M218.8 84.7 L245.6 105.7 M234.4 103.9 L245.6 105.7 L241.1 95.2"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="do-check" d="M245.6 166.3 L218.8 187.3 M223.3 176.8 L218.8 187.3 L230 185.5"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="check-act" d="M141.2 187.3 L114.4 166.3 M125.6 168.1 L114.4 166.3 L118.9 176.8"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="act-plan" d="M114.4 105.7 L141.2 84.7 M136.7 95.2 L141.2 84.7 L130 86.5"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
               <div class="cycle-node" data-cycle-node="plan">
                 <strong data-i18n="pdca.phase.plan.label"></strong>
               </div>
@@ -67,6 +85,7 @@
               <div class="cycle-node" data-cycle-node="act">
                 <strong data-i18n="pdca.phase.act.label"></strong>
               </div>
+              <div class="cycle-token" id="definition-token" aria-hidden="true">📦</div>
             </div>
             <section class="definition-panel">
               <div class="pdca-counter" id="definition-counter"></div>
@@ -93,12 +112,23 @@
           <h2 data-i18n="pdca.visual.title"></h2>
           <p class="pdca-module-lead" data-i18n="pdca.visual.lead"></p>
           <div class="cycle-layout">
-            <div class="cycle-canvas cycle-canvas-shared" id="visual-cycle">
-              <div class="cycle-ring"></div>
-              <div class="cycle-link" data-cycle-link="plan-do"></div>
-              <div class="cycle-link" data-cycle-link="do-check"></div>
-              <div class="cycle-link" data-cycle-link="check-act"></div>
-              <div class="cycle-link" data-cycle-link="act-plan"></div>
+            <div class="cycle-canvas" id="visual-cycle">
+              <svg class="cycle-links" viewBox="0 0 360 272" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <ellipse class="cycle-ring" cx="180" cy="136" rx="104.4" ry="81.6"
+                          fill="none" stroke="rgba(19, 44, 64, 0.15)" stroke-width="1.5" stroke-dasharray="3 8" />
+                <path class="cycle-link" data-cycle-link="plan-do" d="M218.8 84.7 L245.6 105.7 M234.4 103.9 L245.6 105.7 L241.1 95.2"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="do-check" d="M245.6 166.3 L218.8 187.3 M223.3 176.8 L218.8 187.3 L230 185.5"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="check-act" d="M141.2 187.3 L114.4 166.3 M125.6 168.1 L114.4 166.3 L118.9 176.8"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="act-plan" d="M114.4 105.7 L141.2 84.7 M136.7 95.2 L141.2 84.7 L130 86.5"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
               <div class="cycle-node" data-cycle-node="plan">
                 <strong data-i18n="pdca.phase.plan.label"></strong>
               </div>
@@ -148,12 +178,23 @@
           <p class="pdca-module-lead" data-i18n="pdca.malfunctions.lead"></p>
 
           <div class="cycle-layout">
-            <div class="cycle-canvas cycle-canvas-shared is-malfunction" id="malfunction-cycle" data-malfunction-type="type1">
-              <div class="cycle-ring"></div>
-              <div class="cycle-link" data-cycle-link="plan-do"></div>
-              <div class="cycle-link" data-cycle-link="do-check"></div>
-              <div class="cycle-link" data-cycle-link="check-act"></div>
-              <div class="cycle-link" data-cycle-link="act-plan"></div>
+            <div class="cycle-canvas is-malfunction" id="malfunction-cycle" data-malfunction-type="type1">
+              <svg class="cycle-links" viewBox="0 0 360 272" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <ellipse class="cycle-ring" cx="180" cy="136" rx="104.4" ry="81.6"
+                          fill="none" stroke="rgba(19, 44, 64, 0.15)" stroke-width="1.5" stroke-dasharray="3 8" />
+                <path class="cycle-link" data-cycle-link="plan-do" d="M218.8 84.7 L245.6 105.7 M234.4 103.9 L245.6 105.7 L241.1 95.2"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="do-check" d="M245.6 166.3 L218.8 187.3 M223.3 176.8 L218.8 187.3 L230 185.5"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="check-act" d="M141.2 187.3 L114.4 166.3 M125.6 168.1 L114.4 166.3 L118.9 176.8"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path class="cycle-link" data-cycle-link="act-plan" d="M114.4 105.7 L141.2 84.7 M136.7 95.2 L141.2 84.7 L130 86.5"
+                      fill="none" stroke="rgba(11, 128, 120, 0.58)" stroke-width="4.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
               <div class="cycle-node" data-cycle-node="plan">
                 <strong data-i18n="pdca.phase.plan.label"></strong>
               </div>
@@ -227,7 +268,7 @@
       <footer class="app-footer">
         <span data-i18n="footer.author"></span>
         <span> · </span>
-        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <a href="https://github.com/JLMirallesB/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
         <span> · </span>
         <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
         <span> · </span>

@@ -7,7 +7,14 @@
       name="description"
       content="Simulación interactiva del modelo PVCA con modo definición y modo malfuncionamiento."
     />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <title>PDCA Lab · PVCA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
+    />
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/pvca.css" />
     <script type="module" src="../assets/js/pages/pvca.js" defer></script>
@@ -43,6 +50,9 @@
               id="pvca-mode-definition"
               class="tab-btn is-active"
               type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="pvca-panel"
               data-mode-target="definition"
               data-i18n="pvca.modes.definition"
             ></button>
@@ -50,25 +60,30 @@
               id="pvca-mode-malfunction"
               class="tab-btn"
               type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="pvca-panel"
               data-mode-target="malfunction"
               data-i18n="pvca.modes.malfunction"
             ></button>
           </div>
 
-          <p class="pvca-lead" id="pvca-lead"></p>
+          <div id="pvca-panel" role="tabpanel" aria-labelledby="pvca-mode-definition">
+            <p class="pvca-lead" id="pvca-lead"></p>
 
-          <div class="pvca-canvas-wrap">
-            <div class="pvca-canvas" id="pvca-canvas">
-              <button class="pvca-box" data-pvca-phase="pressure" type="button"></button>
-              <button class="pvca-box" data-pvca-phase="vision" type="button"></button>
-              <button class="pvca-box" data-pvca-phase="capacity" type="button"></button>
-              <button class="pvca-box" data-pvca-phase="actions" type="button"></button>
+            <div class="pvca-canvas-wrap">
+              <div class="pvca-canvas" id="pvca-canvas">
+                <button class="pvca-box" data-pvca-phase="pressure" type="button"></button>
+                <button class="pvca-box" data-pvca-phase="vision" type="button"></button>
+                <button class="pvca-box" data-pvca-phase="capacity" type="button"></button>
+                <button class="pvca-box" data-pvca-phase="actions" type="button"></button>
+              </div>
             </div>
-          </div>
 
-          <section class="pvca-problem" id="pvca-problem" aria-live="polite"></section>
-          <div class="pvca-reset-wrap">
-            <button id="pvca-reset" class="btn btn-secondary" type="button" data-i18n="pvca.actions.reset" hidden></button>
+            <section class="pvca-problem" id="pvca-problem" aria-live="polite"></section>
+            <div class="pvca-reset-wrap">
+              <button id="pvca-reset" class="btn btn-secondary" type="button" data-i18n="pvca.actions.reset" hidden></button>
+            </div>
           </div>
         </section>
 
@@ -87,7 +102,7 @@
       <footer class="app-footer">
         <span data-i18n="footer.author"></span>
         <span> · </span>
-        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <a href="https://github.com/JLMirallesB/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
         <span> · </span>
         <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
         <span> · </span>

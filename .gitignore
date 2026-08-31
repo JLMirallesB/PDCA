@@ -7,3 +7,6 @@
 !.claude/agents/
 !.claude/skills/
 CLAUDE.local.md
+
+# Servidor local de desarrollo — no forma parte del sitio publicado
+dev.sh

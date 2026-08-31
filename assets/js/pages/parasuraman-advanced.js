@@ -194,6 +194,7 @@ function setMode(modeName) {
     const isActive = tab.dataset.modeTarget === modeName;
     tab.classList.toggle("is-active", isActive);
     tab.setAttribute("aria-selected", String(isActive));
+    tab.tabIndex = isActive ? 0 : -1;
   });
   dom.panels.forEach((panel) => {
     const isPanelActive = panel.dataset.modePanel === modeName;
@@ -635,10 +636,29 @@ function applyGuidedDecision() {
   renderGuided();
 }
 
+function focusTabByOffset(currentIndex, offset) {
+  const total = dom.tabs.length;
+  const nextTab = dom.tabs[(currentIndex + offset + total) % total];
+  setMode(nextTab.dataset.modeTarget);
+  nextTab.focus();
+}
+
 function bindGeneralEvents() {
-  dom.tabs.forEach((tab) => {
+  dom.tabs.forEach((tab, index) => {
     tab.addEventListener("click", () => {
       setMode(tab.dataset.modeTarget);
+    });
+
+    tab.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+        event.preventDefault();
+        focusTabByOffset(index, 1);
+        return;
+      }
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+        event.preventDefault();
+        focusTabByOffset(index, -1);
+      }
     });
   });
 

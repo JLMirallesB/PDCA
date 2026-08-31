@@ -7,6 +7,7 @@ const dom = {
   lead: document.getElementById("pvca-lead"),
   problem: document.getElementById("pvca-problem"),
   resetButton: document.getElementById("pvca-reset"),
+  panel: document.getElementById("pvca-panel"),
   modal: document.getElementById("pvca-modal"),
   modalTitle: document.getElementById("pvca-modal-title"),
   modalDescription: document.getElementById("pvca-modal-description"),
@@ -16,7 +17,8 @@ const dom = {
 const state = {
   mode: "definition",
   removedPhase: null,
-  modalPhase: null
+  modalPhase: null,
+  modalOpener: null
 };
 
 function getPhaseLabel(phaseId) {
@@ -32,6 +34,10 @@ function renderModeTabs() {
     const isActive = button.dataset.modeTarget === state.mode;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-selected", String(isActive));
+    button.tabIndex = isActive ? 0 : -1;
+    if (isActive && dom.panel) {
+      dom.panel.setAttribute("aria-labelledby", button.id);
+    }
   });
 }
 
@@ -96,14 +102,49 @@ function render() {
   renderModal();
 }
 
-function openModalForPhase(phaseId) {
+function getModalFocusables() {
+  return Array.from(
+    dom.modal.querySelectorAll("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])")
+  ).filter((node) => !node.hidden);
+}
+
+function trapModalFocus(event) {
+  const focusables = getModalFocusables();
+  if (focusables.length === 0) {
+    return;
+  }
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+    return;
+  }
+  if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function openModalForPhase(phaseId, opener) {
   state.modalPhase = phaseId;
+  state.modalOpener = opener || null;
   renderModal();
+  dom.modalClose.focus();
 }
 
 function closeModal() {
+  if (state.modalPhase === null) {
+    return;
+  }
+  const opener = state.modalOpener;
   state.modalPhase = null;
+  state.modalOpener = null;
   renderModal();
+  if (opener && document.contains(opener)) {
+    opener.focus();
+  }
 }
 
 function triggerMalfunction(phaseId) {
@@ -126,14 +167,37 @@ function setMode(mode) {
   render();
 }
 
+function focusTabByOffset(currentIndex, offset) {
+  const total = dom.modeButtons.length;
+  const nextButton = dom.modeButtons[(currentIndex + offset + total) % total];
+  const mode = nextButton.dataset.modeTarget;
+  if (!mode) {
+    return;
+  }
+  setMode(mode);
+  nextButton.focus();
+}
+
 function setupEvents() {
-  dom.modeButtons.forEach((button) => {
+  dom.modeButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
       const mode = button.dataset.modeTarget;
       if (!mode) {
         return;
       }
       setMode(mode);
+    });
+
+    button.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+        event.preventDefault();
+        focusTabByOffset(index, 1);
+        return;
+      }
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+        event.preventDefault();
+        focusTabByOffset(index, -1);
+      }
     });
   });
 
@@ -145,7 +209,7 @@ function setupEvents() {
       }
 
       if (state.mode === "definition") {
-        openModalForPhase(phaseId);
+        openModalForPhase(phaseId, box);
         return;
       }
 
@@ -175,8 +239,15 @@ function setupEvents() {
   });
 
   window.addEventListener("keydown", (event) => {
+    if (state.modalPhase === null) {
+      return;
+    }
     if (event.key === "Escape") {
       closeModal();
+      return;
+    }
+    if (event.key === "Tab") {
+      trapModalFocus(event);
     }
   });
 

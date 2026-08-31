@@ -7,7 +7,14 @@
       name="description"
       content="Simulador paso a paso de la definición de calidad de Parasuraman para formación educativa."
     />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <title>PDCA Lab · Parasuraman</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
+    />
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/parasuraman-simple.css" />
     <script type="module" src="../assets/js/pages/parasuraman.js" defer></script>
@@ -55,17 +62,36 @@
             <div class="animation-area">
               <div class="scale-shell">
                 <div class="scale-line">
-                  <div class="scale-gap" id="distance-gap"></div>
+                  <div class="scale-gap" id="distance-gap">
+                    <span class="gap-value" id="distance-gap-value"></span>
+                  </div>
+
+                  <!-- La etiqueta de la expectativa va encima de la línea y la de la
+                       percepción debajo: así los dos puntos pueden acercarse hasta
+                       tocarse sin que sus rótulos se pisen. -->
+                  <div class="point point-expected" id="point-expected">
+                    <span class="point-label">
+                      <span data-i18n="parasuramanSimple.labels.expected"></span>
+                      <b id="point-expected-value"></b>
+                    </span>
+                    <span class="point-core" aria-hidden="true"></span>
+                  </div>
 
                   <div class="point point-perceived" id="point-perceived">
                     <span class="point-core" aria-hidden="true"></span>
-                    <span class="point-label" data-i18n="parasuramanSimple.labels.perceived"></span>
+                    <span class="point-label">
+                      <span data-i18n="parasuramanSimple.labels.perceived"></span>
+                      <b id="point-perceived-value"></b>
+                    </span>
                   </div>
+                </div>
 
-                  <div class="point point-expected" id="point-expected">
-                    <span class="point-core" aria-hidden="true"></span>
-                    <span class="point-label" data-i18n="parasuramanSimple.labels.expected"></span>
-                  </div>
+                <div class="scale-axis" aria-hidden="true">
+                  <span>0</span>
+                  <span>25</span>
+                  <span>50</span>
+                  <span>75</span>
+                  <span>100</span>
                 </div>
               </div>
             </div>
@@ -103,7 +129,7 @@
       <footer class="app-footer">
         <span data-i18n="footer.author"></span>
         <span> · </span>
-        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <a href="https://github.com/JLMirallesB/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
         <span> · </span>
         <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
         <span> · </span>

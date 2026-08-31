@@ -80,7 +80,10 @@ const dom = {
   next: document.getElementById("step-next"),
   perceived: document.getElementById("point-perceived"),
   expected: document.getElementById("point-expected"),
+  perceivedValue: document.getElementById("point-perceived-value"),
+  expectedValue: document.getElementById("point-expected-value"),
   gap: document.getElementById("distance-gap"),
+  gapValue: document.getElementById("distance-gap-value"),
   subjectiveNote: document.getElementById("subjective-note"),
   metricPerceived: document.getElementById("metric-perceived"),
   metricQuality: document.getElementById("metric-quality"),
@@ -149,9 +152,26 @@ function buildParameterRows() {
   });
 }
 
+// Un rótulo centrado sobre un punto al 0% o al 100% se saldría de la escala.
+// Desplazarlo justo su propia posición lo mantiene siempre dentro: en el 0 se
+// alinea por la izquierda, en el 50 queda centrado y en el 100 por la derecha.
+function keepLabelInside(pointElement, percent) {
+  const label = pointElement.querySelector(".point-label");
+  if (label) {
+    label.style.transform = `translateX(${-clamp(percent, 0, 100)}%)`;
+  }
+}
+
 function movePoints(scene) {
   dom.perceived.style.left = `${scene.perceived}%`;
   dom.expected.style.left = `${scene.expected}%`;
+
+  keepLabelInside(dom.perceived, scene.perceived);
+  keepLabelInside(dom.expected, scene.expected);
+
+  // Cada punto lleva su valor encima: el movimiento se lee sin ir a buscar la cifra.
+  dom.perceivedValue.textContent = String(scene.perceived);
+  dom.expectedValue.textContent = String(scene.expected);
 
   const gapLeft = Math.min(scene.perceived, scene.expected);
   const gapWidth = Math.abs(scene.perceived - scene.expected);
@@ -159,6 +179,7 @@ function movePoints(scene) {
   dom.gap.style.left = `${gapLeft}%`;
   dom.gap.style.width = `${gapWidth}%`;
   dom.gap.style.display = gapWidth < 0.4 ? "none" : "block";
+  dom.gapValue.textContent = calculateDistance(scene.perceived, scene.expected);
 }
 
 function paintParameters(scene) {

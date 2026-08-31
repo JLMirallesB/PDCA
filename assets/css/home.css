@@ -4,8 +4,36 @@
   padding: 1rem 1.15rem;
 }
 
-.hero p {
+.hero > p {
   margin: 0;
+  color: var(--muted);
+}
+
+.hero-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.9rem;
+  margin-top: 0.6rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(12, 29, 44, 0.08);
+}
+
+.hero-points article {
+  display: grid;
+  gap: 0.2rem;
+  align-content: start;
+}
+
+.hero-points h2 {
+  margin: 0;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  color: var(--accent-strong);
+}
+
+.hero-points p {
+  margin: 0;
+  font-size: 0.9rem;
   color: var(--muted);
 }
 

@@ -54,6 +54,14 @@
   flex: 1;
 }
 
+/* En el primer y el último paso se oculta uno de los dos botones. Con display:none
+   el que queda se estira al doble y salta de sitio en cada avance: se le reserva el
+   hueco para que "Adelante" no se mueva en todo el recorrido. */
+.pdca-actions button[hidden] {
+  display: block;
+  visibility: hidden;
+}
+
 .cycle-layout {
   display: grid;
   gap: 0.9rem;
@@ -62,7 +70,11 @@
 
 .cycle-canvas {
   position: relative;
-  min-height: 256px;
+  /* Las cajas se colocan en %, el trazado del ciclo en unidades del viewBox.
+     Fijar la proporción hace que ambos sistemas describan el mismo espacio a
+     cualquier ancho; antes las flechas iban en px y se despegaban de las cajas. */
+  aspect-ratio: 360 / 272;
+  container-type: inline-size;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(12, 29, 44, 0.12);
   background:
@@ -71,64 +83,46 @@
     #fbfbf7;
 }
 
+.cycle-links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* El anillo pasa por los centros de las cuatro cajas, no por un inset aproximado. */
 .cycle-ring {
-  position: absolute;
-  inset: 18% 14%;
-  border: 2px dashed rgba(19, 44, 64, 0.3);
-  border-radius: 50%;
+  fill: none;
+  stroke: rgba(19, 44, 64, 0.15);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 8;
 }
 
+/* Cada flecha arranca y termina en el borde de su caja, con aire a los dos lados.
+   La punta va en el mismo trazo que la línea, así un solo `stroke` las tiñe juntas. */
 .cycle-link {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 78px;
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(11, 128, 120, 0.52);
-  transform-origin: center;
-  transition: opacity 220ms ease, background-color 220ms ease, border 220ms ease;
-}
-
-.cycle-link::after {
-  content: "";
-  position: absolute;
-  right: -3px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid rgba(11, 128, 120, 0.7);
-}
-
-.cycle-link[data-cycle-link="plan-do"] {
-  transform: translate(-50%, -50%) translate(47px, -48px) rotate(42deg);
-}
-
-.cycle-link[data-cycle-link="do-check"] {
-  transform: translate(-50%, -50%) translate(47px, 48px) rotate(138deg);
-}
-
-.cycle-link[data-cycle-link="check-act"] {
-  transform: translate(-50%, -50%) translate(-47px, 48px) rotate(42deg);
-}
-
-.cycle-link[data-cycle-link="act-plan"] {
-  transform: translate(-50%, -50%) translate(-47px, -48px) rotate(138deg);
+  fill: none;
+  stroke: rgba(11, 128, 120, 0.58);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 220ms ease, stroke 220ms ease, stroke-dasharray 220ms ease;
 }
 
 .cycle-node {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 102px;
-  min-height: 52px;
+  width: 30%;
+  min-height: 19%;
   border-radius: 12px;
   border: 1px solid rgba(12, 29, 44, 0.18);
   background: #fff;
   display: grid;
   place-items: center;
   text-align: center;
-  font-size: 0.84rem;
+  font-size: clamp(0.7rem, 3.3cqw, 0.84rem);
+  line-height: 1.2;
   padding: 0.32rem;
   color: var(--muted);
   transition:
@@ -177,13 +171,22 @@
   pointer-events: none;
 }
 
+/* El paquete atraviesa las cajas al circular, que es justo lo que ilustra: pasa
+   por las cuatro fases. Va como ficha —disco propio y sombra— para leerse
+   por encima del texto en vez de ensuciarlo. */
 .cycle-token {
   position: absolute;
-  width: 32px;
-  height: 32px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
   display: grid;
   place-items: center;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(12, 29, 44, 0.1),
+    0 3px 8px rgba(21, 43, 62, 0.16);
   transform: translate(-50%, -50%);
   transition:
     left 620ms cubic-bezier(0.2, 0.9, 0.2, 1),
@@ -261,16 +264,14 @@
   font-size: 1.05rem;
 }
 
+/* Tipo 1: la información llega, pero incompleta. El traspaso se dibuja
+   discontinuo para que se lea como un canal que gotea, no como uno cortado. */
 .cycle-canvas.is-malfunction[data-malfunction-type="type1"] [data-cycle-link="do-check"] {
-  background: transparent;
-  border: 2px dashed rgba(169, 53, 42, 0.75);
-  height: 7px;
+  stroke: rgba(169, 53, 42, 0.8);
+  stroke-dasharray: 5 5;
 }
 
-.cycle-canvas.is-malfunction[data-malfunction-type="type1"] [data-cycle-link="do-check"]::after {
-  border-left-color: rgba(169, 53, 42, 0.75);
-}
-
+/* Tipo 2: la fase de comprobación se salta; entra y sale en rojo. */
 .cycle-canvas.is-malfunction[data-malfunction-type="type2"] [data-cycle-node="check"] {
   opacity: 0.35;
   text-decoration: line-through;
@@ -278,12 +279,7 @@
 
 .cycle-canvas.is-malfunction[data-malfunction-type="type2"] [data-cycle-link="do-check"],
 .cycle-canvas.is-malfunction[data-malfunction-type="type2"] [data-cycle-link="check-act"] {
-  background: rgba(169, 53, 42, 0.55);
-}
-
-.cycle-canvas.is-malfunction[data-malfunction-type="type2"] [data-cycle-link="do-check"]::after,
-.cycle-canvas.is-malfunction[data-malfunction-type="type2"] [data-cycle-link="check-act"]::after {
-  border-left-color: rgba(169, 53, 42, 0.72);
+  stroke: rgba(169, 53, 42, 0.7);
 }
 
 .cycle-canvas.is-malfunction[data-malfunction-type="type3"] [data-cycle-node] {

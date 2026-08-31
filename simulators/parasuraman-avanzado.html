@@ -7,7 +7,14 @@
       name="description"
       content="Simulador avanzado de la definición de calidad de Parasuraman con modo guiado y evaluación."
     />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <title>PDCA Lab · Parasuraman Avanzado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
+    />
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/simulator.css" />
     <script type="module" src="../assets/js/pages/parasuraman-advanced.js" defer></script>
@@ -40,11 +47,29 @@
 
         <section>
           <div class="mode-tabs" role="tablist" aria-label="Mode selector">
-            <button class="tab-btn is-active" type="button" data-mode-target="simple" data-i18n="parasuraman.mode.simple"></button>
-            <button class="tab-btn" type="button" data-mode-target="guided" data-i18n="parasuraman.mode.guided"></button>
+            <button
+              id="tab-simple"
+              class="tab-btn is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="panel-simple"
+              data-mode-target="simple"
+              data-i18n="parasuraman.mode.simple"
+            ></button>
+            <button
+              id="tab-guided"
+              class="tab-btn"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-guided"
+              data-mode-target="guided"
+              data-i18n="parasuraman.mode.guided"
+            ></button>
           </div>
 
-          <section class="mode-panel" data-mode-panel="simple">
+          <section class="mode-panel" id="panel-simple" role="tabpanel" aria-labelledby="tab-simple" data-mode-panel="simple">
             <div class="sim-grid">
               <section class="control-panel card" aria-label="Simulation controls">
                 <div class="control-group">
@@ -142,7 +167,7 @@
             </div>
           </section>
 
-          <section class="mode-panel" data-mode-panel="guided" hidden>
+          <section class="mode-panel" id="panel-guided" role="tabpanel" aria-labelledby="tab-guided" data-mode-panel="guided" hidden>
             <section class="guided-panel card">
               <h2 data-i18n="parasuraman.guided.title"></h2>
               <p data-i18n="parasuraman.guided.description"></p>
@@ -186,7 +211,7 @@
       <footer class="app-footer">
         <span data-i18n="footer.author"></span>
         <span> · </span>
-        <a href="https://github.com/miralles/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
+        <a href="https://github.com/JLMirallesB/PDCA" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo"></a>
         <span> · </span>
         <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener noreferrer" data-i18n="footer.horchata"></a>
         <span> · </span>

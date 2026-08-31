@@ -61,12 +61,6 @@ const dictionaries = {
           mode: "Definición + malfuncionamiento",
           cta: "Entrar"
         }
-      },
-      roadmap: {
-        title: "Ruta de desarrollo",
-        item1: "Parasuraman: modo paso a paso + modo avanzado protegido con contraseña demo.",
-        item2: "PDCA: flujo de roles e información en ciclos colectivos.",
-        item3: "PVCA: diagnóstico interactivo de malfuncionamientos y efectos acumulados."
       }
     },
     parasuraman: {
@@ -445,22 +439,6 @@ const dictionaries = {
       modal: {
         close: "Cerrar"
       }
-    },
-    placeholder: {
-      shared: {
-        now: "Estructura preparada",
-        back: "Volver al selector"
-      },
-      pdca: {
-        title: "PDCA",
-        subtitle: "Modelo planificado: pendiente de contenido y simulación detallada contigo.",
-        next: "En la siguiente fase añadiremos roles, flujo de información y casos de coordinación de ciclo colectivo."
-      },
-      pvca: {
-        title: "PVCA y malfuncionamientos",
-        subtitle: "Modelo planificado: pendiente de contenido y simulación detallada contigo.",
-        next: "En la siguiente fase añadiremos los malfuncionamientos tipo 1, 2 y 3 con decisiones guiadas y diagnóstico."
-      }
     }
   },
   ca: {
@@ -522,12 +500,6 @@ const dictionaries = {
           mode: "Definició + malfuncionament",
           cta: "Entrar"
         }
-      },
-      roadmap: {
-        title: "Ruta de desenvolupament",
-        item1: "Parasuraman: mode pas a pas + mode avançat protegit amb contrasenya demo.",
-        item2: "PDCA: flux de rols i informació en cicles col·lectius.",
-        item3: "PVCA: diagnòstic interactiu de malfuncionaments i efectes acumulats."
       }
     },
     parasuraman: {
@@ -906,22 +878,6 @@ const dictionaries = {
       modal: {
         close: "Tancar"
       }
-    },
-    placeholder: {
-      shared: {
-        now: "Estructura preparada",
-        back: "Tornar al selector"
-      },
-      pdca: {
-        title: "PDCA",
-        subtitle: "Model planificat: pendent de contingut i simulació detallada amb tu.",
-        next: "En la fase següent afegirem rols, flux d'informació i casos de coordinació de cicle col·lectiu."
-      },
-      pvca: {
-        title: "PVCA i malfuncionaments",
-        subtitle: "Model planificat: pendent de contingut i simulació detallada amb tu.",
-        next: "En la fase següent afegirem els malfuncionaments tipus 1, 2 i 3 amb decisions guiades i diagnòstic."
-      }
     }
   },
   en: {
@@ -983,12 +939,6 @@ const dictionaries = {
           mode: "Definition + malfunction",
           cta: "Open"
         }
-      },
-      roadmap: {
-        title: "Development roadmap",
-        item1: "Parasuraman: step-by-step mode + advanced mode protected with demo password.",
-        item2: "PDCA: roles and information flow across collective cycles.",
-        item3: "PVCA: interactive malfunction diagnosis and impact analysis."
       }
     },
     parasuraman: {
@@ -1367,22 +1317,6 @@ const dictionaries = {
       modal: {
         close: "Close"
       }
-    },
-    placeholder: {
-      shared: {
-        now: "Scaffold ready",
-        back: "Back to selector"
-      },
-      pdca: {
-        title: "PDCA",
-        subtitle: "Planned model: content and detailed simulation will be built with you next.",
-        next: "Next phase will add role flows, information transfer, and collective-cycle coordination cases."
-      },
-      pvca: {
-        title: "PVCA and malfunctions",
-        subtitle: "Planned model: content and detailed simulation will be built with you next.",
-        next: "Next phase will add type 1, 2, and 3 malfunction scenarios with guided diagnosis."
-      }
     }
   }
 };
@@ -1433,6 +1367,10 @@ let currentLanguage = (() => {
   }
   return detectDefaultLanguage();
 })();
+
+// El <html lang> de las páginas viene fijo en "es"; se corrige al cargar el
+// módulo para que el idioma esté anunciado ya en el primer render.
+document.documentElement.lang = currentLanguage;
 
 export function getSupportedLanguages() {
   return [...SUPPORTED_LANGUAGES];
